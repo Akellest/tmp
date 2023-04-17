@@ -1,0 +1,16 @@
+@startuml
+actor Player
+actor Machine
+participant Game
+participant Dice
+
+activate Game
+Player -> Game: Бросить кубики
+Game -> Dice: roll()
+Dice -> Game: result
+Game -> Player: Показать результат броска
+Game -> Machine: Показать результат броска
+Game -> Player: Переместить игрока на новую ячейку
+Player -> PropertySquare: landOn(Player)
+deactivate Game
+@enduml
