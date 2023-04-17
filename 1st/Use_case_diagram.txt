@@ -1,0 +1,35 @@
+@startuml
+package "Монополия" {
+  actor Player
+  actor Machine
+
+  rectangle "Игра монополия" {
+    usecase "Начать игру" as UC1
+    usecase "Бросить кубики" as UC2
+    usecase "Купить имущество" as UC3
+    usecase "Продать имущество" as UC4
+    usecase "Пройти на старт" as UC5
+    usecase "Закончить игру" as UC6
+
+    Player --> UC1
+    Player --> UC2
+    Player --> UC3
+    Player --> UC4
+    Player --> UC5
+    Player --> UC6
+
+    Machine --> UC1
+    Machine --> UC2
+    Machine --> UC3
+    Machine --> UC4
+    Machine --> UC5
+    Machine --> UC6
+
+    UC1 --> UC2
+    UC2 --> UC3
+    UC2 --> UC4
+    UC2 --> UC5
+    UC2 --> UC6
+  }
+}
+@enduml
