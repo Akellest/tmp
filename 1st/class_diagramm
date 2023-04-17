@@ -1,0 +1,73 @@
+@startuml
+package "Монополия" {
+  class Game {
+    +play()
+    +endGame()
+    -board : Board
+    -dice : Dice
+    -players : Player[]
+    -currentPlayer : Player
+  }
+
+  class Board {
+    -squares : Square[]
+  }
+
+  class Square {
+    +landOn(player: Player)
+  }
+  
+  package "actions"{
+  class PropertySquare {
+    +landOn(player: Player)
+  }
+
+  class UtilitySquare {
+    +landOn(player: Player)
+  }
+
+  class RailroadSquare {
+    +landOn(player: Player)
+  }
+  }
+  
+  package "players"{
+  class Player {
+    +takeTurn()
+    +pay(amount: int)
+    +receive(amount: int)
+    -cash : int
+    -currentSquare : Square
+    -properties : PropertySquare[]
+  }
+  class Machine {
+    +takeTurn()
+    +pay(amount: int)
+    +receive(amount: int)
+    -cash : int
+    -currentSquare : Square
+    -properties : PropertySquare[]
+  }
+  }
+  class Dice {
+    +roll()
+  }
+
+  Game --> Board
+  Game --> Dice
+  Game --> Player
+  Game --> Machine
+  Board --> Square
+  Square <|-- PropertySquare
+  Square <|-- UtilitySquare
+  Square <|-- RailroadSquare
+  Player --> Square
+  Machine --> Square
+  Player ..> PropertySquare : owns
+  Player ..> UtilitySquare : owns
+  Player ..> RailroadSquare : owns
+  Machine ..> PropertySquare : owns
+  Machine ..> UtilitySquare : owns
+  Machine ..> RailroadSquare : owns
+}
+@enduml
