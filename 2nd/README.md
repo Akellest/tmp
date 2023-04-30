@@ -8,11 +8,30 @@
 
 Рисунок 1 – диаграмма развертывания для игры Монополия
 
-\@startuml node \"Веб-сервер\" { component \"Веб-приложение\" as WebApp
-} node \"База данных\" { component \"СУБД\" as DB } node \"Игровой
-компьютер\" { component \"Игровая программа\" as Game } Machine \--\>
-Game Game \--\> Board Game \--\> Dice Game \--\> Player Game \--\>
-Machine Player \--\> PropertySquare Player \--\> UtilitySquare Player
-\--\> RailroadSquare Machine \--\> PropertySquare Machine \--\>
-UtilitySquare Machine \--\> RailroadSquare DB \<\-- Game WebApp \--\>
-Game \@enduml
+@startuml
+node "Веб-сервер"
+{
+  component "Веб-приложение" as WebApp
+}
+node "База данных"
+{
+  component "СУБД" as DB
+}
+node "Игровой компьютер"
+{
+  component "Игровая программа" as Game
+}
+Machine --> Game
+Game --> Board
+Game --> Dice
+Game --> Player
+Game --> Machine
+Player --> PropertySquare
+Player --> UtilitySquare
+Player --> RailroadSquare
+Machine --> PropertySquare
+Machine --> UtilitySquare
+Machine --> RailroadSquare
+DB <-- Game
+WebApp --> Game
+@enduml
